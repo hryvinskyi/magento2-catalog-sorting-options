@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright (c) 2026. Volodymyr Hryvinskyi. All rights reserved.
+ * Author: Volodymyr Hryvinskyi <volodymyr@hryvinskyi.com>
+ * GitHub: https://github.com/hryvinskyi
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Hryvinskyi\CatalogSortingOptions\Api\Data\SortOptionOverrideInterface"
+                type="Hryvinskyi\CatalogSortingOptions\Model\Data\SortOptionOverride"/>
+    <preference for="Hryvinskyi\CatalogSortingOptions\Api\SortOptionPolicyInterface"
+                type="Hryvinskyi\CatalogSortingOptions\Model\SortOptionPolicy"/>
+    <preference for="Hryvinskyi\CatalogSortingOptions\Api\SortOptionOverridesParserInterface"
+                type="Hryvinskyi\CatalogSortingOptions\Model\SortOptionOverridesParser"/>
+    <preference for="Hryvinskyi\CatalogSortingOptions\Api\SortOptionPolicyResolverInterface"
+                type="Hryvinskyi\CatalogSortingOptions\Model\SortOptionPolicyResolver"/>
+    <preference for="Hryvinskyi\CatalogSortingOptions\Api\SortOptionCatalogueInterface"
+                type="Hryvinskyi\CatalogSortingOptions\Model\SortOptionCatalogue"/>
+    <preference for="Hryvinskyi\CatalogSortingOptions\Api\ListingSortOptionsInterface"
+                type="Hryvinskyi\CatalogSortingOptions\Model\ListingSortOptions"/>
+    <preference for="Hryvinskyi\CatalogSortingOptions\Api\DefaultDirectionResolverInterface"
+                type="Hryvinskyi\CatalogSortingOptions\Model\DefaultDirectionResolver"/>
+
+    <!--
+        Sources of the sort options an admin can override. A module that adds a sort option code to listings adds
+        an item implementing SortOptionSourceInterface, with a sortOrder (lower goes first; the first label for a
+        code wins).
+    -->
+    <type name="Hryvinskyi\CatalogSortingOptions\Model\SortOptionCatalogue">
+        <arguments>
+            <argument name="sources" xsi:type="array">
+                <item name="catalog" xsi:type="object" sortOrder="10">Hryvinskyi\CatalogSortingOptions\Model\Source\CatalogSortOptions</item>
+                <item name="search_relevance" xsi:type="object" sortOrder="20">Hryvinskyi\CatalogSortingOptions\Model\Source\SearchRelevanceSortOption</item>
+                <item name="listing_options" xsi:type="object" sortOrder="30">Hryvinskyi\CatalogSortingOptions\Model\Source\ListingSortOptionsSource</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!--
+        Listing sort options: sort codes a shopper can pick that are not product attributes. A module adds one item
+        implementing ListingSortOptionInterface (usually a virtualType of ConfigFlagListingSortOption), with a
+        sortOrder, here in a global di.xml: an area di.xml naming this argument would replace the whole list.
+    -->
+    <type name="Hryvinskyi\CatalogSortingOptions\Model\ListingSortOptions">
+        <arguments>
+            <argument name="options" xsi:type="array"/>
+        </arguments>
+    </type>
+</config>

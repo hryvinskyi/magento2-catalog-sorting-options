@@ -1,0 +1,31 @@
+{
+    "name": "hryvinskyi/magento2-catalog-sorting-options",
+    "description": "Catalog sort options per store: hide, rename and reorder the options of the storefront Sort By list, and offer the listing sort options other modules register, each opening in its own direction.",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Volodymyr Hryvinskyi",
+            "email": "volodymyr@hryvinskyi.com"
+        }
+    ],
+    "require": {
+        "php": "~8.1.0||~8.2.0||~8.3.0||~8.4.0||~8.5.0",
+        "hryvinskyi/magento2-catalog-sorting": "^1.0",
+        "magento/framework": "*",
+        "magento/module-backend": "*",
+        "magento/module-store": "*",
+        "magento/module-config": "*",
+        "magento/module-catalog": "*",
+        "magento/module-catalog-search": "*"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Hryvinskyi\\CatalogSortingOptions\\": ""
+        }
+    }
+}

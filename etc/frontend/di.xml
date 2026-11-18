@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright (c) 2026. Volodymyr Hryvinskyi. All rights reserved.
+ * Author: Volodymyr Hryvinskyi <volodymyr@hryvinskyi.com>
+ * GitHub: https://github.com/hryvinskyi
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Catalog\Block\Product\ProductList\Toolbar">
+        <plugin name="Hryvinskyi_CatalogSortingOptions::sortOptions"
+                type="Hryvinskyi\CatalogSortingOptions\Plugin\Catalog\ToolbarSortOptionsPlugin"/>
+        <plugin name="Hryvinskyi_CatalogSortingOptions::defaultDirection"
+                type="Hryvinskyi\CatalogSortingOptions\Plugin\Catalog\ToolbarDefaultDirectionPlugin"/>
+    </type>
+
+    <!--
+        Storefront only: the catalog's sortable options feed category Sort By lists, quick and advanced search and
+        the toolbar's own fallback, so the listing sort options a store offers are added there. Declared for the
+        storefront area, the admin and API listings of attributes used for sorting stay untouched.
+    -->
+    <type name="Magento\Catalog\Model\Config">
+        <plugin name="Hryvinskyi_CatalogSortingOptions::listingSortOptions"
+                type="Hryvinskyi\CatalogSortingOptions\Plugin\Catalog\CatalogConfigListingSortOptionsPlugin"/>
+    </type>
+</config>

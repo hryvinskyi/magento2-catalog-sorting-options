@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright (c) 2026. Volodymyr Hryvinskyi. All rights reserved.
+ * Author: Volodymyr Hryvinskyi <volodymyr@hryvinskyi.com>
+ * GitHub: https://github.com/hryvinskyi
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="catalog_sorting">
+            <group id="options" translate="label" type="text" sortOrder="5"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Sort Options</label>
+                <field id="overrides" translate="label comment" type="text" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort Options</label>
+                    <comment>One row per sort option to change on category pages and search results. Show No removes the option from the Sort By list; Label replaces its name, blank keeps the current one; Place in List moves it (1 = first), blank keeps its place. If every option of a listing would be hidden, the listing shows them all. When the default sort is hidden, listings start with the first option shown, in the direction that option sets for itself, or ascending when it sets none, as Name and Price do; the default is set in Catalog › Storefront › Product Listing Sort by.</comment>
+                    <frontend_model>Hryvinskyi\CatalogSortingOptions\Block\Adminhtml\Form\Field\SortOptionOverrides</frontend_model>
+                    <backend_model>Hryvinskyi\CatalogSortingOptions\Model\Config\Backend\SortOptionOverrides</backend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
